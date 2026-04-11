@@ -77,8 +77,8 @@ const Login = () => {
                                         <Mail className={`h-5 w-5 transition-colors duration-200 ${isDark ? 'text-gray-500 group-focus-within:text-green-500' : 'text-gray-400 group-focus-within:text-green-600'}`} />
                                     </div>
                                     <Input
-                                        type=\"email\"
-                                        placeholder=\"Email Address\"
+                                        type="email"
+                                        placeholder="Email Address"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         className={`pl-12 h-14 border rounded-2xl focus-visible:ring-green-500 transition-all duration-200 ${isDark ? 'bg-gray-800/50 border-gray-700 text-white placeholder-gray-500' : 'bg-gray-50/50 border-gray-200 text-gray-900 placeholder-gray-400'}`}
@@ -89,38 +89,38 @@ const Login = () => {
 
                             <div className="space-y-2">
                                 <div className="relative group">
-                                    <div className=\"absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors group-focus-within:text-green-600\">
+                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors group-focus-within:text-green-600">
                                         <Lock className={`h-5 w-5 transition-colors duration-200 ${isDark ? 'text-gray-500 group-focus-within:text-green-500' : 'text-gray-400 group-focus-within:text-green-600'}`} />
                                     </div>
                                     <Input
-                                        type={showPassword ? \"text\" : \"password\"}
-                                        placeholder=\"Password\"
+                                        type={showPassword ? "text" : "password"}
+                                        placeholder="Password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         className={`pl-12 h-14 border rounded-2xl focus-visible:ring-green-500 transition-all duration-200 ${isDark ? 'bg-gray-800/50 border-gray-700 text-white placeholder-gray-500' : 'bg-gray-50/50 border-gray-200 text-gray-900 placeholder-gray-400'}`}
                                         required
                                     />
                                     <button
-                                        type=\"button\"
+                                        type="button"
                                         onClick={() => setShowPassword(!showPassword)}
                                         className={`absolute inset-y-0 right-0 pr-4 flex items-center transition-colors duration-200 ${isDark ? 'text-gray-500 hover:text-gray-300' : 'text-gray-400 hover:text-gray-600'}`}
                                     >
-                                        {showPassword ? <EyeOff className=\"h-5 w-5\" /> : <Eye className=\"h-5 w-5\" />}
+                                        {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                                     </button>
                                 </div>
                             </div>
 
                             <Button
-                                type=\"submit\"
+                                type="submit"
                                 disabled={loading}
-                                className=\"w-full h-14 bg-green-600 hover:bg-green-700 text-white font-bold text-lg rounded-2xl transition-all shadow-lg shadow-green-200 flex items-center justify-center gap-2\"
+                                className="w-full h-14 bg-green-600 hover:bg-green-700 text-white font-bold text-lg rounded-2xl transition-all shadow-lg shadow-green-200 flex items-center justify-center gap-2"
                             >
                                 {loading ? 'Logging in...' : 'Sign In'}
-                                {!loading && <ArrowRight className=\"h-5 w-5\" />}
+                                {!loading && <ArrowRight className="h-5 w-5" />}
                             </Button>
                         </form>
 
-                        <div className=\"mt-8 text-center\">
+                        <div className="mt-8 text-center">
                             <p className={`transition-colors duration-200 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                                 Don't have an account?{' '}
                                 <button 
