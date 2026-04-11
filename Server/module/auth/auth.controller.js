@@ -1,4 +1,3 @@
-// server/module/auth/auth.controller.js
 import User from "../users/user.model.js";
 import Auth from "./auth.model.js";
 import bcrypt from "bcrypt";
@@ -6,13 +5,13 @@ import jwt from "jsonwebtoken";
 import Roles from "../../constant/roles.js";
 
 export const signup = async (req, res) => {
-    const { fullName, email, phone, password } = req.body;
+    const { fullName, email, password } = req.body;
     try {
         const userExists = await User.getByEmail(email);
         if (userExists) return res.status(400).json({ message: "Email registered na pre!" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        await User.create({ fullName, email, phone, role: Roles.COMMUTER }, hashedPassword);
+        await User.create({ fullName, email, role: Roles.COMMUTER }, hashedPassword);
 
         res.status(201).json({ message: "Account created successfully!" });
     } catch (error) {
@@ -51,7 +50,7 @@ export const login = async (req, res) => {
             _id: user._id,
             fullName: user.fullName,
             email: user.email,
-            phone: user.phone,
+            phone: user.phone || '',
             role: userRole,
             location: user.location || 'Commuter'
         };
@@ -89,7 +88,7 @@ export const getStatus = async (req, res) => {
             _id: user._id,
             fullName: user.fullName,
             email: user.email,
-            phone: user.phone,
+            phone: user.phone || '',
             role: user.role || Roles.COMMUTER,
             location: user.location || 'Commuter'
         };

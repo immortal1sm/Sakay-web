@@ -1,4 +1,3 @@
-// server/module/users/user.model.js
 import connectDB from "../../config/db.js";
 import { ObjectId } from "mongodb";
 import Roles from "../../constant/roles.js";
@@ -13,7 +12,6 @@ class User {
         const userProfile = {
             fullName: userData.fullName,
             email: userData.email.toLowerCase(),
-            phone: userData.phone,
             role: userData.role || Roles.COMMUTER,
             location: userData.location || 'Commuter',
             createdAt: new Date(),

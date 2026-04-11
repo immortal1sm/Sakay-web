@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Lock, User, Phone, ArrowRight, CarFront } from 'lucide-react';
+import { Mail, Lock, User, ArrowRight, CarFront, Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,11 +12,13 @@ const SignUp = () => {
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
-        phone: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,10 +27,25 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+        
+        // Check if passwords match
+        if (formData.password !== formData.confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
+        
+        // Check password length
+        if (formData.password.length < 6) {
+            setError('Password must be at least 6 characters long');
+            return;
+        }
+        
         setLoading(true);
         
         try {
-            await api.post('/auth/sign-up', formData);
+            // Remove confirmPassword before sending to API
+            const { confirmPassword, ...signUpData } = formData;
+            await api.post('/auth/sign-up', signUpData);
             navigate('/login');
         } catch (err) {
             setError(err.response?.data?.message || 'Signup failed. Please try again.');
@@ -102,16 +119,24 @@ const SignUp = () => {
 
                             <div className="relative group">
                                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors group-focus-within:text-green-600">
-                                    <Phone className="h-5 w-5 text-gray-400 group-focus-within:text-green-600" />
+                                    <Lock className="h-5 w-5 text-gray-400 group-focus-within:text-green-600" />
                                 </div>
                                 <Input
-                                    name="phone"
-                                    placeholder="Phone Number"
-                                    value={formData.phone}
+                                    name="password"
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Password"
+                                    value={formData.password}
                                     onChange={handleChange}
-                                    className="pl-12 h-14 bg-gray-50/50 border-gray-200 rounded-2xl focus-visible:ring-green-500 transition-all"
+                                    className="pl-12 pr-12 h-14 bg-gray-50/50 border-gray-200 rounded-2xl focus-visible:ring-green-500 transition-all"
                                     required
                                 />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-green-600 transition-colors"
+                                >
+                                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                                </button>
                             </div>
 
                             <div className="relative group">
@@ -119,14 +144,21 @@ const SignUp = () => {
                                     <Lock className="h-5 w-5 text-gray-400 group-focus-within:text-green-600" />
                                 </div>
                                 <Input
-                                    name="password"
-                                    type="password"
-                                    placeholder="Password"
-                                    value={formData.password}
+                                    name="confirmPassword"
+                                    type={showConfirmPassword ? "text" : "password"}
+                                    placeholder="Confirm Password"
+                                    value={formData.confirmPassword}
                                     onChange={handleChange}
-                                    className="pl-12 h-14 bg-gray-50/50 border-gray-200 rounded-2xl focus-visible:ring-green-500 transition-all"
+                                    className="pl-12 pr-12 h-14 bg-gray-50/50 border-gray-200 rounded-2xl focus-visible:ring-green-500 transition-all"
                                     required
                                 />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-green-600 transition-colors"
+                                >
+                                    {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                                </button>
                             </div>
 
                             <Button
