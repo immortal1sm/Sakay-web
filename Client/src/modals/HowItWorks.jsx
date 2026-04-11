@@ -19,7 +19,8 @@ import { Button } from "@/components/ui/button"
 import { useTheme } from '../context/ThemeContext'
 
 const HowItWorks = ({ isOpen, onClose }) => {
-  const { isDark } = useTheme()
+  const { effectiveTheme } = useTheme()
+  const isDark = effectiveTheme === 'dark'
 
   // Close modal when pressing Escape key
   useEffect(() => {

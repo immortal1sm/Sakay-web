@@ -4,7 +4,8 @@ import { X, Shield, AlertTriangle, Car, MapPin, Phone, Bell, Users, Eye, Clock, 
 import { useTheme } from '../context/ThemeContext'
 
 const SafetyTipsModal = ({ isOpen, onClose }) => {
-  const { isDark } = useTheme()
+  const { effectiveTheme } = useTheme()
+  const isDark = effectiveTheme === 'dark'
 
   // Close modal when pressing Escape key
   useEffect(() => {
