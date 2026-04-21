@@ -2,34 +2,46 @@
 import FeedbackModel from "./feedback.model.js";
 import { ObjectId } from "mongodb";
 
-// Get all feedbacks (PUBLIC - only approved)
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Helper: remove PII fields from public feedback responses
+const sanitizePublicFeedback = (fb) => {
+    const { userEmail, userId, likedBy, ...publicFields } = fb;
+    return {
+        ...publicFields,
+        userName: publicFields.userName || 'Anonymous User',
+        userLocation: publicFields.userLocation || 'Commuter'
+    };
+};
+
+// Helper: generic error response
+const sendError = (res, error, fallbackMsg) => {
+    console.error(fallbackMsg, error);
+    if (isProduction) {
+        return res.status(500).json({ message: 'An internal error occurred. Please try again later.' });
+    }
+    return res.status(500).json({ message: fallbackMsg + ': ' + error.message });
+};
+
+// Get all feedbacks (PUBLIC - only approved, NO PII)
 export const getAllFeedbacks = async (req, res) => {
     try {
         const feedbacks = await FeedbackModel.findApproved();
-        
-        const formattedFeedbacks = feedbacks.map(feedback => ({
-            ...feedback,
-            userName: feedback.userName || 'Anonymous User',
-            userLocation: feedback.userLocation || 'Commuter'
-        }));
-        
+        const formattedFeedbacks = feedbacks.map(sanitizePublicFeedback);
         res.status(200).json(formattedFeedbacks);
     } catch (error) {
-        console.error('Error fetching feedbacks:', error);
-        res.status(500).json({ message: "Server error: " + error.message });
+        sendError(res, error, 'Error fetching feedbacks');
     }
 };
 
-// Get all feedbacks for admin (includes pending)
+// Get all feedbacks for admin (includes pending — admin can see PII)
 export const getAllFeedbacksForAdmin = async (req, res) => {
     try {
-        // Check if user is admin
         if (req.user.role !== 'super-admin') {
             return res.status(403).json({ message: "Access denied. Admin only." });
         }
         
         const feedbacks = await FeedbackModel.findAllForAdmin();
-        
         const formattedFeedbacks = feedbacks.map(feedback => ({
             ...feedback,
             userName: feedback.userName || 'Anonymous User',
@@ -38,8 +50,7 @@ export const getAllFeedbacksForAdmin = async (req, res) => {
         
         res.status(200).json(formattedFeedbacks);
     } catch (error) {
-        console.error('Error fetching all feedbacks:', error);
-        res.status(500).json({ message: "Server error: " + error.message });
+        sendError(res, error, 'Error fetching all feedbacks');
     }
 };
 
@@ -51,7 +62,6 @@ export const getPendingFeedbacks = async (req, res) => {
         }
         
         const feedbacks = await FeedbackModel.findPending();
-        
         const formattedFeedbacks = feedbacks.map(feedback => ({
             ...feedback,
             userName: feedback.userName || 'Anonymous User',
@@ -60,8 +70,7 @@ export const getPendingFeedbacks = async (req, res) => {
         
         res.status(200).json(formattedFeedbacks);
     } catch (error) {
-        console.error('Error fetching pending feedbacks:', error);
-        res.status(500).json({ message: "Server error: " + error.message });
+        sendError(res, error, 'Error fetching pending feedbacks');
     }
 };
 
@@ -82,12 +91,11 @@ export const approveFeedback = async (req, res) => {
         
         res.status(200).json({ message: "Feedback approved successfully" });
     } catch (error) {
-        console.error('Error approving feedback:', error);
-        res.status(500).json({ message: "Server error: " + error.message });
+        sendError(res, error, 'Error approving feedback');
     }
 };
 
-// Get feedback by ID
+// Get feedback by ID (PUBLIC — NO PII)
 export const getFeedbackById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -97,18 +105,13 @@ export const getFeedbackById = async (req, res) => {
             return res.status(404).json({ message: "Feedback not found" });
         }
         
-        res.status(200).json({
-            ...feedback,
-            userName: feedback.userName || 'Anonymous User',
-            userLocation: feedback.userLocation || 'Commuter'
-        });
+        res.status(200).json(sanitizePublicFeedback(feedback));
     } catch (error) {
-        console.error('Error fetching feedback by ID:', error);
-        res.status(500).json({ message: "Server error: " + error.message });
+        sendError(res, error, 'Error fetching feedback by ID');
     }
 };
 
-// Get user's own feedbacks (PROTECTED)
+// Get user's own feedbacks (PROTECTED — user can see their own data)
 export const getUserFeedbacks = async (req, res) => {
     try {
         const userId = req.user._id;
@@ -122,8 +125,7 @@ export const getUserFeedbacks = async (req, res) => {
         
         res.status(200).json(formattedFeedbacks);
     } catch (error) {
-        console.error('Error fetching user feedbacks:', error);
-        res.status(500).json({ message: "Server error: " + error.message });
+        sendError(res, error, 'Error fetching user feedbacks');
     }
 };
 
@@ -133,6 +135,8 @@ export const createFeedback = async (req, res) => {
         const { rating, comment, userLocation } = req.body;
         const user = req.user;
         
+        // Input validation is now handled by validateFeedback middleware,
+        // but keep defensive checks here too
         if (!rating || rating < 1 || rating > 5) {
             return res.status(400).json({ message: "Rating must be between 1 and 5" });
         }
@@ -146,7 +150,7 @@ export const createFeedback = async (req, res) => {
         const feedbackData = {
             userId: user._id,
             userName: userName,
-            userEmail: user.email,
+            userEmail: user.email, // Still stored in DB for admin, but NOT returned in public API
             userLocation: userLocation || user.location || 'Commuter',
             rating: parseInt(rating),
             comment: comment.trim()
@@ -154,13 +158,15 @@ export const createFeedback = async (req, res) => {
         
         const newFeedback = await FeedbackModel.create(feedbackData);
         
+        // Remove PII from response — user can see their own email but we limit it
+        const { userEmail, likedBy, ...safeFeedback } = newFeedback;
+        
         res.status(201).json({ 
             message: "Thank you for your feedback! It will be reviewed by our admin team before being published.",
-            feedback: newFeedback
+            feedback: safeFeedback
         });
     } catch (error) {
-        console.error('Error creating feedback:', error);
-        res.status(500).json({ message: "Server error: " + error.message });
+        sendError(res, error, 'Error creating feedback');
     }
 };
 
@@ -182,8 +188,7 @@ export const likeFeedback = async (req, res) => {
         
         res.status(200).json({ message: "Feedback liked successfully" });
     } catch (error) {
-        console.error('Error liking feedback:', error);
-        res.status(500).json({ message: "Server error: " + error.message });
+        sendError(res, error, 'Error liking feedback');
     }
 };
 
@@ -196,8 +201,7 @@ export const unlikeFeedback = async (req, res) => {
         const result = await FeedbackModel.unlikeFeedback(id, userId);
         res.status(200).json({ message: "Feedback unliked successfully" });
     } catch (error) {
-        console.error('Error unliking feedback:', error);
-        res.status(500).json({ message: "Server error: " + error.message });
+        sendError(res, error, 'Error unliking feedback');
     }
 };
 
@@ -221,18 +225,16 @@ export const deleteFeedback = async (req, res) => {
         
         res.status(200).json({ message: "Feedback deleted successfully" });
     } catch (error) {
-        console.error('Error deleting feedback:', error);
-        res.status(500).json({ message: "Server error: " + error.message });
+        sendError(res, error, 'Error deleting feedback');
     }
 };
 
-// Get feedback statistics (PUBLIC)
+// Get feedback statistics (PUBLIC — only aggregate data)
 export const getFeedbackStats = async (req, res) => {
     try {
         const stats = await FeedbackModel.getStats();
         res.status(200).json(stats);
     } catch (error) {
-        console.error('Error fetching feedback stats:', error);
-        res.status(500).json({ message: "Server error: " + error.message });
+        sendError(res, error, 'Error fetching feedback stats');
     }
 };

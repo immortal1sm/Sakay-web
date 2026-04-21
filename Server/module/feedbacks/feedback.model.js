@@ -5,6 +5,14 @@ import { ObjectId } from "mongodb";
 class FeedbackModel {
     static #collection = "feedbacks";
 
+    // Projection that excludes sensitive PII from query results
+    static #publicProjection = {
+        projection: {
+            userEmail: 0,
+            likedBy: 0
+        }
+    };
+
     // Create new feedback (pending approval)
     static async create(feedbackData) {
         const db = await connectDB();
@@ -18,7 +26,7 @@ class FeedbackModel {
             comment: feedbackData.comment,
             likes: 0,
             likedBy: [],
-            isApproved: false, // NEW: Pending approval
+            isApproved: false,
             createdAt: new Date(),
             updatedAt: new Date()
         };
@@ -27,7 +35,7 @@ class FeedbackModel {
         return { ...newFeedback, _id: result.insertedId };
     }
 
-    // Get all feedbacks for admin (includes pending)
+    // Get all feedbacks for admin (includes pending — admin sees everything)
     static async findAllForAdmin() {
         const db = await connectDB();
         const feedbacks = await db.collection(this.#collection)
@@ -42,11 +50,11 @@ class FeedbackModel {
         }));
     }
 
-    // Get only approved feedbacks for public
+    // Get only approved feedbacks for public (PII excluded via projection)
     static async findApproved() {
         const db = await connectDB();
         const feedbacks = await db.collection(this.#collection)
-            .find({ isApproved: true })
+            .find({ isApproved: true }, this.#publicProjection)
             .sort({ createdAt: -1 })
             .toArray();
 
@@ -62,10 +70,13 @@ class FeedbackModel {
         return await this.findApproved();
     }
 
-    // Get feedback by ID
+    // Get feedback by ID (public — PII excluded via projection)
     static async findById(id) {
         const db = await connectDB();
-        const feedback = await db.collection(this.#collection).findOne({ _id: new ObjectId(id) });
+        const feedback = await db.collection(this.#collection).findOne(
+            { _id: new ObjectId(id), isApproved: true },
+            this.#publicProjection
+        );
 
         if (feedback) {
             feedback.userName = feedback.userName || 'Anonymous User';
@@ -75,11 +86,11 @@ class FeedbackModel {
         return feedback;
     }
 
-    // Get feedbacks by user
+    // Get feedbacks by user (user sees their own data)
     static async findByUserId(userId) {
         const db = await connectDB();
         const feedbacks = await db.collection(this.#collection)
-            .find({ userId: new ObjectId(userId) })
+            .find({ userId: new ObjectId(userId) }, this.#publicProjection)
             .sort({ createdAt: -1 })
             .toArray();
 
@@ -123,7 +134,10 @@ class FeedbackModel {
     static async likeFeedback(feedbackId, userId) {
         const db = await connectDB();
 
-        const feedback = await this.findById(feedbackId);
+        const feedback = await db.collection(this.#collection).findOne(
+            { _id: new ObjectId(feedbackId) },
+            { projection: { likedBy: 1 } }
+        );
         if (!feedback) {
             return { error: "Feedback not found" };
         }
@@ -177,10 +191,12 @@ class FeedbackModel {
         });
     }
 
-    // Get statistics (only approved)
+    // Get statistics (only approved — no PII)
     static async getStats() {
         const db = await connectDB();
-        const feedbacks = await this.findApproved();
+        const feedbacks = await db.collection(this.#collection)
+            .find({ isApproved: true }, { projection: { rating: 1, likes: 1 } })
+            .toArray();
 
         const totalFeedbacks = feedbacks.length;
         const averageRating = totalFeedbacks > 0

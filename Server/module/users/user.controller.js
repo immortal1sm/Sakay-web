@@ -2,6 +2,16 @@
 import User from "./user.model.js";
 import Roles from "../../constant/roles.js";
 
+const isProduction = process.env.NODE_ENV === 'production';
+
+const sendError = (res, error, fallbackMsg) => {
+    console.error(fallbackMsg, error);
+    if (isProduction) {
+        return res.status(500).json({ message: 'An internal error occurred. Please try again later.' });
+    }
+    return res.status(500).json({ message: fallbackMsg + ': ' + error.message });
+};
+
 export const getUserProfile = async (req, res) => {
   try {
     const user = await User.getById(req.user._id);
@@ -11,7 +21,7 @@ export const getUserProfile = async (req, res) => {
     const { password: _, ...userWithoutPassword } = user;
     res.status(200).json(userWithoutPassword);
   } catch (error) {
-    res.status(500).json({ message: "Server Error: " + error.message });
+    sendError(res, error, 'Error fetching user profile');
   }
 };
 
@@ -20,7 +30,6 @@ export const getUserProfile = async (req, res) => {
 // Get all users (admin only)
 export const getAllUsers = async (req, res) => {
   try {
-    // Check if user is admin
     if (req.user.role !== Roles.ADMIN) {
       return res.status(403).json({ message: "Access denied. Admin only." });
     }
@@ -28,8 +37,7 @@ export const getAllUsers = async (req, res) => {
     const users = await User.getAllUsers();
     res.status(200).json(users);
   } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).json({ message: "Server Error: " + error.message });
+    sendError(res, error, 'Error fetching users');
   }
 };
 
@@ -38,17 +46,14 @@ export const updateUserRole = async (req, res) => {
   try {
     const { userId, role } = req.body;
     
-    // Check if user is admin
     if (req.user.role !== Roles.ADMIN) {
       return res.status(403).json({ message: "Access denied. Admin only." });
     }
     
-    // Check if role is valid
     if (role !== Roles.ADMIN && role !== Roles.COMMUTER) {
       return res.status(400).json({ message: "Invalid role" });
     }
     
-    // Cannot change your own role
     if (userId === req.user._id.toString()) {
       return res.status(400).json({ message: "Cannot change your own role" });
     }
@@ -60,8 +65,7 @@ export const updateUserRole = async (req, res) => {
     
     res.status(200).json({ message: "User role updated successfully" });
   } catch (error) {
-    console.error('Error updating user role:', error);
-    res.status(500).json({ message: "Server Error: " + error.message });
+    sendError(res, error, 'Error updating user role');
   }
 };
 
@@ -70,12 +74,10 @@ export const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
     
-    // Check if user is admin
     if (req.user.role !== Roles.ADMIN) {
       return res.status(403).json({ message: "Access denied. Admin only." });
     }
     
-    // Cannot delete yourself
     if (id === req.user._id.toString()) {
       return res.status(400).json({ message: "Cannot delete your own account" });
     }
@@ -87,7 +89,6 @@ export const deleteUser = async (req, res) => {
     
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
-    console.error('Error deleting user:', error);
-    res.status(500).json({ message: "Server Error: " + error.message });
+    sendError(res, error, 'Error deleting user');
   }
 };
