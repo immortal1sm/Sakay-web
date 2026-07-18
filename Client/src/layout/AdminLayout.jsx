@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
-import { Menu, LogOut, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Menu, LogOut } from 'lucide-react';
 import Swal from 'sweetalert2';
 import ThemeToggle from '../components/ThemeToggle';
 
@@ -52,19 +52,18 @@ const AdminLayout = () => {
           <div className={`backdrop-blur-sm border-b sticky top-0 z-10 transition-colors duration-200 ${isDark ? 'bg-gray-900/80 border-gray-800' : 'bg-white/80 border-gray-200'}`}>
             <div className="flex items-center justify-between px-6 py-4">
               <div className="flex items-center gap-4">
-                <button onClick={toggleSidebar} className={`p-2 rounded-lg transition-colors ${isDark ? 'hover:bg-gray-800' : 'hover:bg-gray-100'}`} title={isSidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}>
-                  {isSidebarCollapsed ? <ChevronRight size={20} className={isDark ? 'text-gray-400' : 'text-gray-600'} /> : <ChevronLeft size={20} className={isDark ? 'text-gray-400' : 'text-gray-600'} />}
-                </button>
                 <div>
                   <h2 className={`text-xl font-bold transition-colors ${isDark ? 'text-white' : 'text-gray-800'}`}>Admin Dashboard</h2>
                   <p className={`text-sm transition-colors ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Welcome back, {user?.fullName}</p>
                 </div>
               </div>
-              <button onClick={handleLogout} className={`flex items-center gap-2 text-sm transition-colors ${isDark ? 'text-gray-400 hover:text-red-400' : 'text-gray-500 hover:text-red-500'}`}>
-                <LogOut size={18} />
-                <span className="hidden sm:inline">Logout</span>
-              </button>
-              <ThemeToggle />
+              <div className="flex items-center gap-2">
+                <ThemeToggle />
+                <button onClick={handleLogout} className={`flex items-center gap-2 text-sm transition-colors ${isDark ? 'text-gray-400 hover:text-red-400' : 'text-gray-500 hover:text-red-500'}`}>
+                  <LogOut size={18} />
+                  <span className="hidden sm:inline">Logout</span>
+                </button>
+              </div>
             </div>
           </div>
 
