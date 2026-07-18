@@ -24,6 +24,7 @@ const TopBar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Features', path: '/features' },
+    { name: 'Become a Driver', path: '/driver/register' },
     { name: 'Download', path: '/download' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },

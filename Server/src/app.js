@@ -7,6 +7,7 @@ import authRoutes from '../module/auth/auth.routers.js';
 import userRoutes from '../module/users/user.routes.js';
 import feedbackRoutes from '../module/feedbacks/feedback.routes.js';
 import announcementRoutes from '../module/announcements/announcement.routes.js';
+import driverRoutes from '../module/drivers/driver.routes.js';
 import { apiLimiter } from '../middlewares/rateLimiter.js';
 import { errorHandler } from '../middlewares/errorHandler.js';
 
@@ -61,6 +62,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/feedbacks', feedbackRoutes);
 app.use('/api/announcements', announcementRoutes);
+app.use('/api/drivers', driverRoutes);
 
 // === GLOBAL ERROR HANDLER ===
 // This must be last — catches all unhandled errors

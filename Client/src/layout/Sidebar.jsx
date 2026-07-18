@@ -6,6 +6,7 @@ import {
   Megaphone, 
   MessageSquare, 
   Users,
+  Car,
   ChevronLeft,
   ChevronRight,
   X
@@ -20,7 +21,8 @@ const Sidebar = ({ isCollapsed, onToggle, isMobile = false, isOpen = false, onCl
     { name: 'Dashboard', path: '/admin', icon: LayoutDashboard },
     { name: 'Announcements', path: '/admin/announcement', icon: Megaphone },
     { name: 'Feedbacks', path: '/admin/feedbacks', icon: MessageSquare },
-    { name: 'Users', path: '/admin/users', icon: Users }
+    { name: 'Users', path: '/admin/users', icon: Users },
+    { name: 'Drivers', path: '/admin/drivers', icon: Car }
   ];
 
   const isActive = (path) => {

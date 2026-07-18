@@ -90,6 +90,16 @@ const Footer = () => {
                                         <span>How It Works</span>
                                     </button>
                                 </li>
+                                {/* Become a Driver */}
+                                <li>
+                                    <button
+                                        onClick={() => handleNavigation('/driver/register')}
+                                        className="text-slate-400 hover:text-grab-green flex items-center gap-2 transition-colors group w-full text-left"
+                                    >
+                                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                        <span>Become a Driver</span>
+                                    </button>
+                                </li>
                                 {/* For Drivers - Open Help Modal */}
                                 <li>
                                     <button

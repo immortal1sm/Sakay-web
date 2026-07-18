@@ -11,6 +11,7 @@ import Login from './auth/login';
 import SignUp from './auth/signup';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
+import DriverRegister from './pages/Users/DriverRegister';
 
 // Admin imports - MATCHING YOUR FILE NAMES EXACTLY
 import AdminLayout from './layout/AdminLayout';
@@ -18,6 +19,7 @@ import Dashboard from './pages/Admin/adminDashboard';
 import Announcement from './pages/Admin/adminAnnouncement';
 import Feedbacks from './pages/Admin/adminFeedbacks';
 import Users from './pages/Admin/adminUsers';
+import AdminDrivers from './pages/Admin/adminDrivers';
 
 // Protected Route for regular users
 const ProtectedRoute = ({ children }) => {
@@ -89,6 +91,9 @@ function AppRoutes() {
         </ProtectedRoute>
       } />
       
+      {/* Public Routes */}
+      <Route path="/driver/register" element={<DriverRegister />} />
+      
       {/* Admin Routes - Requires Admin Access */}
       <Route path="/admin" element={
         <AdminRoute>
@@ -99,6 +104,7 @@ function AppRoutes() {
         <Route path="announcement" element={<Announcement />} />  
         <Route path="feedbacks" element={<Feedbacks />} />
         <Route path="users" element={<Users />} />
+        <Route path="drivers" element={<AdminDrivers />} />
       </Route>
     </Routes>
   );
