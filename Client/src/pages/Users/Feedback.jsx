@@ -385,7 +385,7 @@ const Feedback = () => {
                     Tell Us Your Story
                   </CardTitle>
                   <CardDescription className={isDark ? "text-gray-400" : "text-gray-500"}>
-                    Share your experience with SAKAY
+                    Share your experience with SakayNE
                   </CardDescription>
                 </CardHeader>
 
@@ -447,7 +447,7 @@ const Feedback = () => {
                         name="feedback"
                         value={formData.feedback}
                         onChange={handleChange}
-                        placeholder="Share your experience with SAKAY..."
+                        placeholder="Share your experience with SakayNE..."
                         className={`min-h-[120px] ${isDark ? "bg-gray-800 border-gray-700" : "bg-gray-50 border-gray-200"} rounded-xl p-4 focus:ring-2 focus:ring-grab-green resize-none`}
                         required
                         disabled={submitting}
@@ -486,7 +486,7 @@ const Feedback = () => {
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <div className="h-8 w-1 bg-gradient-to-b from-grab-green to-grab-dark rounded-full" />
-                  <h2 className={`text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>Voices of SAKAY</h2>
+                  <h2 className={`text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>Voices of SakayNE</h2>
                 </div>
                 <Badge className="bg-grab-green/10 text-grab-green border-grab-green/20">
                   <ThumbsUp className="w-3 h-3 mr-1" />

@@ -74,7 +74,7 @@ const SignUp = () => {
                             <CarFront className="text-white w-10 h-10" />
                         </div>
                         <CardTitle className={`text-3xl font-bold tracking-tight transition-colors duration-200 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                            Join SAKAY
+                            Join SakayNE
                         </CardTitle>
                         <CardDescription className={`text-base transition-colors duration-200 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                             Create an account to start your journey

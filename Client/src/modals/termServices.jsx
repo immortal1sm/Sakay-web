@@ -20,14 +20,14 @@ const termServices = () => {
             1. Acceptance of Terms
           </h2>
           <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'} mb-4`}>
-            By accessing or using SAKAY's services, you agree to be bound by these Terms of Service. If you do not agree to these terms, you may not use our services.
+            By accessing or using SakayNE's services, you agree to be bound by these Terms of Service. If you do not agree to these terms, you may not use our services.
           </p>
 
           <h2 className={`text-xl font-semibold ${isDark ? 'text-gray-100' : 'text-gray-800'} mt-6 mb-3`}>
             2. Description of Service
           </h2>
           <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'} mb-4`}>
-            SAKAY provides a transportation information and logistics platform designed to help users navigate public transportation more efficiently. Our services may include route planning, real-time transit information, and related features.
+            SakayNE provides a transportation information and logistics platform designed to help users navigate public transportation more efficiently. Our services may include route planning, real-time transit information, and related features.
           </p>
 
           <h2 className={`text-xl font-semibold ${isDark ? 'text-gray-100' : 'text-gray-800'} mt-6 mb-3`}>
@@ -48,14 +48,14 @@ const termServices = () => {
             5. Intellectual Property
           </h2>
           <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'} mb-4`}>
-            The services and their entire contents, features, and functionality are owned by SAKAY, its licensors, or other providers and are protected by intellectual property laws. You may not reproduce, distribute, modify, or create derivative works without our express written consent.
+            The services and their entire contents, features, and functionality are owned by SakayNE, its licensors, or other providers and are protected by intellectual property laws. You may not reproduce, distribute, modify, or create derivative works without our express written consent.
           </p>
 
           <h2 className={`text-xl font-semibold ${isDark ? 'text-gray-100' : 'text-gray-800'} mt-6 mb-3`}>
             6. Limitation of Liability
           </h2>
           <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'} mb-4`}>
-            SAKAY shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of our services. Our total liability shall not exceed the amount you have paid us in the twelve months preceding the claim.
+            SakayNE shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of our services. Our total liability shall not exceed the amount you have paid us in the twelve months preceding the claim.
           </p>
 
           <h2 className={`text-xl font-semibold ${isDark ? 'text-gray-100' : 'text-gray-800'} mt-6 mb-3`}>

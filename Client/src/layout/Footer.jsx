@@ -57,7 +57,7 @@ const Footer = () => {
                             <div className="flex items-center gap-2">
                                 <img 
                                     src={logo} 
-                                    alt="SAKAY Logo" 
+                                    alt="SakayNE Logo" 
                                     className="h-12 w-auto object-contain"
                                 />
                             </div>
@@ -176,7 +176,7 @@ const Footer = () => {
                     <div className="border-t border-slate-800 pt-8 mt-8">
                         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                             <p className="text-slate-400 text-sm text-center md:text-left">
-                                © {currentYear} SAKAY. All rights reserved.
+                                © {currentYear} SakayNE. All rights reserved.
                             </p>
                             <div className="flex items-center gap-6">
                                 {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item, index) => (

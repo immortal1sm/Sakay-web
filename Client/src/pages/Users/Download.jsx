@@ -102,7 +102,7 @@ const DownloadPage = () => {
             <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold ${isDark ? "text-white" : "text-gray-900"} mb-6`}>
               Download{' '}
               <span className="bg-gradient-to-r from-grab-green to-grab-dark bg-clip-text text-transparent">
-                SAKAY
+                "SakayNE"
               </span>
             </h1>
             <p className={`text-xl ${isDark ? "text-gray-300" : "text-gray-600"} max-w-2xl mx-auto`}>
@@ -191,7 +191,7 @@ const DownloadPage = () => {
                             Download Android APK
                           </h3>
                           <p className={`${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                            Get the latest version of SAKAY for your Android device
+                            Get the latest version of SakayNE for your Android device
                           </p>
                         </div>
 
@@ -341,7 +341,7 @@ const DownloadPage = () => {
                             iOS App Coming Soon
                           </h3>
                           <p className={`${isDark ? "text-gray-400" : "text-gray-500"}`}>
-                            We're working hard to bring SAKAY to iOS devices. Stay tuned for updates!
+                            We're working hard to bring SakayNE to iOS devices. Stay tuned for updates!
                           </p>
                         </div>
 
@@ -451,7 +451,7 @@ const DownloadPage = () => {
               Everything you need for a seamless commute
             </h2>
             <p className={`text-lg ${isDark ? "text-gray-400" : "text-gray-600"} max-w-2xl mx-auto`}>
-              SAKAY comes packed with features designed to make your daily travel smooth and hassle-free
+              SakayNE comes packed with features designed to make your daily travel smooth and hassle-free
             </p>
           </motion.div>
 
@@ -521,7 +521,7 @@ const DownloadPage = () => {
               Ready to transform your commute?
             </h2>
             <p className="text-xl text-white/80">
-              Join thousands of commuters who already made the switch to SAKAY.
+              Join thousands of commuters who already made the switch to SakayNE.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button

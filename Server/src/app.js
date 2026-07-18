@@ -50,7 +50,7 @@ app.use('/api/', apiLimiter); // General rate limit on all API routes
 
 // === ROUTES ===
 app.get('/', (req, res) => {
-    res.send('SAKAY API is running...');
+    res.send('SakayNE API is running...');
 });
 
 app.get('/health', (req, res) => {

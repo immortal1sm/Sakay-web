@@ -266,7 +266,7 @@ const Home = () => {
                 <div className="absolute inset-0 bg-grab-green/20 blur-3xl rounded-full scale-110" />
                 <img
                   src={jeepneyImage}
-                  alt="SAKAY Jeepney"
+                  alt="SakayNE Jeepney"
                   className="w-full max-w-[350px] xs:max-w-[400px] sm:max-w-[450px] md:max-w-[500px] lg:max-w-[550px] xl:max-w-[600px] drop-shadow-2xl relative z-10"
                 />
               </div>
@@ -291,7 +291,7 @@ const Home = () => {
                 Announcements & News
               </h2>
               <p className={`mt-4 max-w-xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                Stay updated with the latest news, updates, and announcements from SAKAY
+                Stay updated with the latest news, updates, and announcements from SakayNE
               </p>
             </div>
 
@@ -591,7 +591,7 @@ const Home = () => {
                       Join our growing network of jeepney drivers
                     </motion.h2>
                     <motion.p variants={fadeInLeft} className="text-gray-300 leading-relaxed">
-                      Partner with SAKAY to reach more passengers, optimize your routes, and reduce idle time.
+                      Partner with SakayNE to reach more passengers, optimize your routes, and reduce idle time.
                     </motion.p>
 
                     <motion.div
@@ -673,7 +673,7 @@ const Home = () => {
             className="mt-24 sm:mt-28 lg:mt-32 text-center"
           >
             <h2 className={`text-3xl md:text-4xl font-bold max-w-3xl mx-auto leading-tight mb-6 ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
-              Ready to try SAKAY?
+              Ready to try SakayNE?
             </h2>
             <p className={`text-lg max-w-2xl mx-auto mb-8 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               Download the app and experience a more convenient way to commute.

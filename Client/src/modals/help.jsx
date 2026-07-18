@@ -37,7 +37,7 @@ const HelpModal = ({ isOpen, onClose }) => {
   const helpTopics = [
     {
       icon: Download,
-      title: 'How to Download SAKAY',
+      title: 'How to Download SakayNE',
       steps: [
         { step: '1', desc: 'Click the "Download App" button on the top bar or visit the Download page' },
         { step: '2', desc: 'Choose your device: Android (APK) or iOS (IPA)' },
@@ -51,7 +51,7 @@ const HelpModal = ({ isOpen, onClose }) => {
       icon: Smartphone,
       title: 'How to Book a Ride',
       steps: [
-        { step: '1', desc: 'Open the SAKAY app and log in with your account' },
+        { step: '1', desc: 'Open the SakayNE app and log in with your account' },
         { step: '2', desc: 'Set your pickup location and destination' },
         { step: '3', desc: 'Choose from available jeepneys and select your preferred time' },
         { step: '4', desc: 'Confirm your booking and wait for driver confirmation' },
@@ -62,7 +62,7 @@ const HelpModal = ({ isOpen, onClose }) => {
       icon: FileQuestion,
       title: 'Frequently Asked Questions',
       faqs: [
-        { q: 'Is the app free?', a: 'Yes! SAKAY is completely free to download and use.' },
+        { q: 'Is the app free?', a: 'Yes! SakayNE is completely free to download and use.' },
         { q: 'How do I become a driver?', a: 'Register as a driver in the app and submit your requirements for verification.' },
         { q: 'What if I encounter a problem?', a: 'Use the in-app report feature or email support.sakay@gmail.com' },
         { q: 'Is my data secure?', a: 'Yes, we use industry-standard encryption to protect your information.' }
@@ -137,7 +137,7 @@ const HelpModal = ({ isOpen, onClose }) => {
                   <div className="w-10 h-10 bg-grab-green/10 rounded-xl flex items-center justify-center">
                     <Download className="w-5 h-5 text-grab-green" />
                   </div>
-                  <h3 className={`text-lg font-bold ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>How to Download SAKAY</h3>
+                  <h3 className={`text-lg font-bold ${isDark ? 'text-gray-100' : 'text-gray-900'}`}>How to Download SakayNE</h3>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>

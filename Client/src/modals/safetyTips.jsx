@@ -102,7 +102,7 @@ const SafetyTipsModal = ({ isOpen, onClose }) => {
       {
         icon: Smartphone,
         title: 'Keep Your App Updated',
-        description: 'Always use the latest version of SAKAY to access the newest safety features.'
+        description: 'Always use the latest version of SakayNE to access the newest safety features.'
       },
       {
         icon: Shield,

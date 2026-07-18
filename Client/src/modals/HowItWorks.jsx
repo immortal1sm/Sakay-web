@@ -52,7 +52,7 @@ const HowItWorks = ({ isOpen, onClose }) => {
     {
       number: '01',
       title: 'Download the App',
-      description: 'Get the SAKAY app from our website. Choose between Android APK or iOS IPA files.',
+      description: 'Get the SakayNE app from our website. Choose between Android APK or iOS IPA files.',
       icon: Smartphone,
     },
     {
@@ -132,7 +132,7 @@ const HowItWorks = ({ isOpen, onClose }) => {
                 </div>
                 <div>
                   <h2 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>How It Works</h2>
-                  <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Get started with SAKAY in 6 easy steps</p>
+                  <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Get started with SakayNE in 6 easy steps</p>
                 </div>
               </div>
               <button

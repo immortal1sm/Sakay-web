@@ -59,7 +59,7 @@ const Login = () => {
                             Welcome Back
                         </CardTitle>
                         <CardDescription className={`text-base transition-colors duration-200 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                            Enter your credentials to access your SAKAY account
+                            Enter your credentials to access your SakayNE account
                         </CardDescription>
                     </CardHeader>
 

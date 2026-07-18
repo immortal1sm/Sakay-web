@@ -58,7 +58,7 @@ const TopBar = () => {
     const isUserDark = getSwalDarkMode();
     const result = await Swal.fire({
       title: `<span style="color: ${isUserDark ? '#4ade80' : '#2E7D32'}">Are you sure?</span>`,
-      text: 'Do you want to logout from SAKAY?',
+      text: 'Do you want to logout from SakayNE?',
       icon: 'question',
       iconColor: '#FF4B4B',
       showCancelButton: true,
@@ -98,7 +98,7 @@ const TopBar = () => {
             <Link to="/" className="flex items-center cursor-pointer">
               <img 
                 src={logo} 
-                alt="SAKAY Logo" 
+                alt="SakayNE Logo" 
                 className="h-12 w-auto object-contain"
               />
             </Link>

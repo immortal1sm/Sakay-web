@@ -96,7 +96,7 @@ const AdminLayout = () => {
                 <div className="w-8 h-8 bg-grab-green rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">S</span>
                 </div>
-                <h2 className={`text-lg font-bold transition-colors ${isDark ? 'text-white' : 'text-gray-800'}`}>SAKAY</h2>
+                <h2 className={`text-lg font-bold transition-colors ${isDark ? 'text-white' : 'text-gray-800'}`}>SakayNE</h2>
               </div>
             </div>
             <div className="flex items-center gap-1">

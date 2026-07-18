@@ -63,7 +63,7 @@ const Sidebar = ({ isCollapsed, onToggle, isMobile = false, isOpen = false, onCl
               <span className="text-white font-bold text-xl">S</span>
             </div>
             <div>
-              <h1 className="font-bold text-xl text-white">SAKAY</h1>
+              <h1 className="font-bold text-xl text-white">SakayNE</h1>
               <p className="text-xs text-white/50">Admin Panel</p>
             </div>
           </div>

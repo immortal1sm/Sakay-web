@@ -73,7 +73,7 @@ const About = () => {
             <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold ${isDark ? "text-white" : "text-gray-900"} mb-6`}>
               About{' '}
               <span className="bg-gradient-to-r from-grab-green to-grab-dark bg-clip-text text-transparent">
-                SAKAY
+                >SakayNE<
               </span>
             </h1>
             <p className={`text-xl ${isDark ? "text-gray-300" : "text-gray-600"} max-w-3xl mx-auto`}>
@@ -152,7 +152,7 @@ const About = () => {
                 From an idea to a movement
               </h2>
               <p className={`${isDark ? "text-gray-400" : "text-gray-600"} leading-relaxed`}>
-                SAKAY started with a simple observation: every day, thousands of Filipino commuters 
+                SakayNE started with a simple observation: every day, thousands of Filipino commuters 
                 waste hours waiting for jeepneys, unsure of when they'll arrive or if there's even space.
               </p>
               <p className={`${isDark ? "text-gray-400" : "text-gray-600"} leading-relaxed`}>
@@ -161,7 +161,7 @@ const About = () => {
                 overcrowding, and unpredictable schedules—were shared by commuters all across the Philippines.
               </p>
               <p className={`${isDark ? "text-gray-400" : "text-gray-600"} leading-relaxed`}>
-                Today, SAKAY is a nationwide initiative dedicated to transforming the commuting experience. 
+                Today, SakayNE is a nationwide initiative dedicated to transforming the commuting experience. 
                 We're building a platform that connects commuters with drivers, providing real-time tracking, 
                 advance booking, and route information—all designed to make every journey smoother.
               </p>
@@ -179,7 +179,7 @@ const About = () => {
                 <CardContent className="p-0">
                   <div className="flex items-center gap-4 mb-6">
                     <Quote className="w-10 h-10 text-grab-green" />
-                    <div className={`text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>Why "SAKAY"?</div>
+                    <div className={`text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>Why "SakayNE"?</div>
                   </div>
                   <p className={`${isDark ? "text-gray-400" : "text-gray-600"} leading-relaxed mb-6`}>
                     "Sakay" is a Filipino word that means "to ride" or "to board." It's a term every 
@@ -221,7 +221,7 @@ const About = () => {
               Our Core Values
             </h2>
             <p className={`text-lg ${isDark ? "text-gray-400" : "text-gray-600"} max-w-2xl mx-auto`}>
-              These principles guide everything we do at SAKAY
+              These principles guide everything we do at SakayNE
             </p>
           </motion.div>
 

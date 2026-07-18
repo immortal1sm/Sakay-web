@@ -218,7 +218,7 @@ const Features = () => {
               </span>
             </h1>
             <p className={`text-xl ${isDark ? "text-gray-300" : "text-gray-600"} max-w-3xl mx-auto`}>
-              From real-time tracking to advance booking, SAKAY provides all the tools you need
+              From real-time tracking to advance booking, SakayNE provides all the tools you need
               for a hassle-free commuting experience across the Philippines.
             </p>
           </motion.div>
@@ -288,7 +288,7 @@ const Features = () => {
               Designed for every commuter
             </h2>
             <p className={`text-lg ${isDark ? "text-gray-400" : "text-gray-600"} max-w-2xl mx-auto`}>
-              SAKAY helps you navigate the daily commute with confidence and convenience
+              SakayNE helps you navigate the daily commute with confidence and convenience
             </p>
           </motion.div>
 
@@ -507,10 +507,10 @@ const Features = () => {
             className="text-center mb-12"
           >
             <h2 className={`text-3xl md:text-4xl font-bold ${isDark ? "text-white" : "text-gray-900"} mb-4`}>
-              Traditional vs. SAKAY
+              Traditional vs. SakayNE
             </h2>
             <p className={`text-lg ${isDark ? "text-gray-400" : "text-gray-600"} max-w-2xl mx-auto`}>
-              See how SAKAY transforms the traditional commuting experience
+              See how SakayNE transforms the traditional commuting experience
             </p>
           </motion.div>
 
@@ -543,7 +543,7 @@ const Features = () => {
                   </ul>
                 </CardContent>
                 <CardContent className={`p-8 ${isDark ? "bg-gradient-to-br from-grab-green/5 to-gray-900" : "bg-gradient-to-br from-grab-green/5 to-white"}`}>
-                  <h3 className="text-xl font-bold text-grab-green mb-6 text-center">SAKAY App</h3>
+                  <h3 className="text-xl font-bold text-grab-green mb-6 text-center">SakayNE App</h3>
                   <ul className="space-y-4">
                     {[
                       'Real-time tracking',
@@ -580,7 +580,7 @@ const Features = () => {
               Ready to experience the difference?
             </h2>
             <p className="text-xl text-white/80">
-              Join thousands of Filipinos who already made the switch to SAKAY.
+              Join thousands of Filipinos who already made the switch to SakayNE.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button

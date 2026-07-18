@@ -30,7 +30,7 @@ const LogoutModal = ({ isOpen, onClose }) => {
           
           <div className="text-center space-y-4">
             <h3 className="text-[20px] font-black text-[#2E7D32] leading-tight">
-              Sigurado ka bang gusto mong umalis sa <span className="text-green-600">SAKAY</span>?
+              Sigurado ka bang gusto mong umalis sa <span className="text-green-600">SakayNE</span>?
             </h3>
             
             <p className="text-gray-500 text-[11px] font-bold uppercase tracking-[0.15em]">

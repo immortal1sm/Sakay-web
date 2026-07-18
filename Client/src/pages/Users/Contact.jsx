@@ -58,12 +58,12 @@ const Contact = () => {
 
   const faqs = [
     {
-      question: 'How do I download the SAKAY app?',
-      answer: 'You can download SAKAY directly from our website. Click the "Download App" button on the top bar or visit our Download page. Choose between Android APK or iOS IPA files.'
+      question: 'How do I download the SakayNE app?',
+      answer: 'You can download SakayNE directly from our website. Click the "Download App" button on the top bar or visit our Download page. Choose between Android APK or iOS IPA files.'
     },
     {
-      question: 'Is SAKAY available in my city?',
-      answer: 'SAKAY is currently available in 15+ cities across Metro Manila and nearby provinces. We\'re expanding to more areas soon! Check the app for the latest coverage.'
+      question: 'Is SakayNE available in my city?',
+      answer: 'SakayNE is currently available in 15+ cities across Metro Manila and nearby provinces. We\'re expanding to more areas soon! Check the app for the latest coverage.'
     },
     {
       question: 'How do I become a driver?',
@@ -79,7 +79,7 @@ const Contact = () => {
     },
     {
       question: 'Is there a booking fee?',
-      answer: 'No, SAKAY does not charge any booking fee. You only pay the standard jeepney fare directly to the driver upon boarding.'
+      answer: 'No, SakayNE does not charge any booking fee. You only pay the standard jeepney fare directly to the driver upon boarding.'
     }
   ]
 
@@ -101,7 +101,7 @@ const Contact = () => {
             <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold ${isDark ? "text-white" : "text-gray-900"} mb-6`}>
               Contact{' '}
               <span className="bg-gradient-to-r from-grab-green to-grab-dark bg-clip-text text-transparent">
-                SAKAY
+                SakayNE
               </span>
             </h1>
             <p className={`text-xl ${isDark ? "text-gray-300" : "text-gray-600"} max-w-3xl mx-auto`}>
@@ -169,7 +169,7 @@ const Contact = () => {
               Got questions? We've got answers
             </h2>
             <p className={`text-lg ${isDark ? "text-gray-400" : "text-gray-600"} max-w-2xl mx-auto`}>
-              Find quick answers to common questions about SAKAY
+              Find quick answers to common questions about SakayNE
             </p>
           </motion.div>
 
