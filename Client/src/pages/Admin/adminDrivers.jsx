@@ -78,28 +78,43 @@ const AdminDrivers = () => {
   };
 
   const handleReject = async (id, name) => {
+    const isUserDark = isDark;
+    const bgColor = isUserDark ? '#1f2937' : '#ffffff';
+    const textColor = isUserDark ? '#f3f4f6' : '#374151';
+    const labelColor = isUserDark ? '#9ca3af' : '#374151';
+    const borderColor = isUserDark ? '#4b5563' : '#e5e7eb';
+    const btnBg = isUserDark ? '#374151' : '#f9fafb';
+    const btnText = isUserDark ? '#e5e7eb' : '#374151';
+    const btnBorder = isUserDark ? '#4b5563' : '#e5e7eb';
+    const inputBg = isUserDark ? '#374151' : '#ffffff';
+    const inputText = isUserDark ? '#f3f4f6' : '#374151';
+    const inputBorder = isUserDark ? '#4b5563' : '#d1d5db';
+
     const { value: formResult } = await Swal.fire({
       title: 'Reject Application',
       text: `Reject ${name}'s driver application?`,
+      background: bgColor,
+      color: textColor,
       html: `
         <div style="text-align: left; margin-bottom: 12px;">
-          <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 6px;">Quick reason:</label>
+          <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 6px; color: ${labelColor};">Quick reason:</label>
           <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;">
             <button type="button" onclick="document.getElementById('reject-notes').value = 'Wrong vehicle number/plate'"
-              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Wrong vehicle number</button>
+              style="padding: 6px 12px; border: 1px solid ${btnBorder}; border-radius: 8px; font-size: 12px; background: ${btnBg}; color: ${btnText}; cursor: pointer; transition: all 0.2s;">Wrong vehicle number</button>
             <button type="button" onclick="document.getElementById('reject-notes').value = 'Blurry or unclear photo'"
-              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Blurry photo</button>
+              style="padding: 6px 12px; border: 1px solid ${btnBorder}; border-radius: 8px; font-size: 12px; background: ${btnBg}; color: ${btnText}; cursor: pointer; transition: all 0.2s;">Blurry photo</button>
             <button type="button" onclick="document.getElementById('reject-notes').value = 'Invalid or expired driver license'"
-              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Invalid license</button>
+              style="padding: 6px 12px; border: 1px solid ${btnBorder}; border-radius: 8px; font-size: 12px; background: ${btnBg}; color: ${btnText}; cursor: pointer; transition: all 0.2s;">Invalid license</button>
             <button type="button" onclick="document.getElementById('reject-notes').value = 'Incomplete or missing documents'"
-              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Missing documents</button>
+              style="padding: 6px 12px; border: 1px solid ${btnBorder}; border-radius: 8px; font-size: 12px; background: ${btnBg}; color: ${btnText}; cursor: pointer; transition: all 0.2s;">Missing documents</button>
             <button type="button" onclick="document.getElementById('reject-notes').value = 'Vehicle does not meet requirements'"
-              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Vehicle requirements</button>
+              style="padding: 6px 12px; border: 1px solid ${btnBorder}; border-radius: 8px; font-size: 12px; background: ${btnBg}; color: ${btnText}; cursor: pointer; transition: all 0.2s;">Vehicle requirements</button>
             <button type="button" onclick="document.getElementById('reject-notes').value = 'Duplicate application'"
-              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Duplicate</button>
+              style="padding: 6px 12px; border: 1px solid ${btnBorder}; border-radius: 8px; font-size: 12px; background: ${btnBg}; color: ${btnText}; cursor: pointer; transition: all 0.2s;">Duplicate</button>
           </div>
-          <label for="reject-notes" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 6px;">Or type your reason:</label>
-          <textarea id="reject-notes" class="swal2-textarea" placeholder="Enter reason for rejection..." style="min-height: 80px;"></textarea>
+          <label for="reject-notes" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 6px; color: ${labelColor};">Or type your reason:</label>
+          <textarea id="reject-notes" class="swal2-textarea" placeholder="Enter reason for rejection..."
+            style="min-height: 80px; background: ${inputBg}; color: ${inputText}; border: 1px solid ${inputBorder}; border-radius: 8px;"></textarea>
         </div>
       `,
       showCancelButton: true,
