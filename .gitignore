@@ -36,3 +36,6 @@ certbot/conf/renewal/
 client-build/
 nginx/conf/*.temp.conf
 nginx/conf/*.backup
+
+# Ignore compose.yml (local customizations)
+compose.yml
