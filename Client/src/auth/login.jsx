@@ -26,8 +26,9 @@ const Login = () => {
         setLoading(true);
         
         try {
-            await login(email, password);
-            const redirectTo = sessionStorage.getItem('redirectAfterLogin') || '/';
+            const result = await login(email, password);
+            const isAdmin = result?.user?.role === 'super-admin';
+            const redirectTo = isAdmin ? '/admin' : (sessionStorage.getItem('redirectAfterLogin') || '/');
             sessionStorage.removeItem('redirectAfterLogin');
             navigate(redirectTo);
         } catch (err) {
