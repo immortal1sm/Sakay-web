@@ -1,5 +1,5 @@
 // Client/src/App.jsx
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import TopBar from './layout/TopBar';
 import Home from './pages/Users/Home';
 import Feature from './pages/Users/Feature';
@@ -110,16 +110,25 @@ function AppRoutes() {
   );
 }
 
+function AppContent() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  return (
+    <AuthProvider>
+      {!isAdminRoute && <TopBar />}
+      <div className={isAdminRoute ? '' : 'pt-20'}>
+        <AppRoutes />
+      </div>
+    </AuthProvider>
+  );
+}
+
 function App() {
   return (
     <ThemeProvider>
       <Router>
-        <AuthProvider>
-          <TopBar />
-          <div className="pt-20">
-            <AppRoutes />
-          </div>
-        </AuthProvider>
+        <AppContent />
       </Router>
     </ThemeProvider>
   );

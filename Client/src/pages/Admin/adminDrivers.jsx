@@ -78,21 +78,47 @@ const AdminDrivers = () => {
   };
 
   const handleReject = async (id, name) => {
-    const { value: notes } = await Swal.fire({
+    const { value: formResult } = await Swal.fire({
       title: 'Reject Application',
       text: `Reject ${name}'s driver application?`,
-      input: 'textarea',
-      inputLabel: 'Reason for rejection (optional)',
-      inputPlaceholder: 'Enter reason...',
+      html: `
+        <div style="text-align: left; margin-bottom: 12px;">
+          <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 6px;">Quick reason:</label>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;">
+            <button type="button" onclick="document.getElementById('reject-notes').value = 'Wrong vehicle number/plate'"
+              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Wrong vehicle number</button>
+            <button type="button" onclick="document.getElementById('reject-notes').value = 'Blurry or unclear photo'"
+              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Blurry photo</button>
+            <button type="button" onclick="document.getElementById('reject-notes').value = 'Invalid or expired driver license'"
+              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Invalid license</button>
+            <button type="button" onclick="document.getElementById('reject-notes').value = 'Incomplete or missing documents'"
+              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Missing documents</button>
+            <button type="button" onclick="document.getElementById('reject-notes').value = 'Vehicle does not meet requirements'"
+              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Vehicle requirements</button>
+            <button type="button" onclick="document.getElementById('reject-notes').value = 'Duplicate application'"
+              style="padding: 6px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 12px; background: #f9fafb; cursor: pointer; transition: all 0.2s;">Duplicate</button>
+          </div>
+          <label for="reject-notes" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 6px;">Or type your reason:</label>
+          <textarea id="reject-notes" class="swal2-textarea" placeholder="Enter reason for rejection..." style="min-height: 80px;"></textarea>
+        </div>
+      `,
       showCancelButton: true,
       confirmButtonColor: '#dc2626',
       confirmButtonText: 'Reject',
-      cancelButtonText: 'Cancel'
+      cancelButtonText: 'Cancel',
+      preConfirm: () => {
+        const notes = document.getElementById('reject-notes').value;
+        if (!notes.trim()) {
+          Swal.showValidationMessage('Please provide a reason or select a preset');
+          return false;
+        }
+        return notes;
+      }
     });
 
-    if (notes !== undefined) {
+    if (formResult !== undefined) {
       try {
-        await api.put(`/drivers/${id}/reject`, { notes });
+        await api.put(`/drivers/${id}/reject`, { notes: formResult });
         Swal.fire('Rejected', 'Driver application has been rejected.', 'info');
         fetchDrivers();
         fetchStats();

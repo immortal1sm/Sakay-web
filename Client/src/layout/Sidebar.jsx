@@ -93,7 +93,7 @@ const Sidebar = ({ isCollapsed, onToggle, isMobile = false, isOpen = false, onCl
       )}
 
       {/* Navigation Menu */}
-      <nav className="flex-1 py-4 overflow-y-auto">
+      <nav className={`flex-1 py-4 ${isCollapsed ? '' : 'overflow-y-auto'}`}>
         <ul className="space-y-1 px-3">
           {menuItems.map((item) => {
             const Icon = item.icon;
