@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { Menu, LogOut, ChevronLeft, ChevronRight } from 'lucide-react';
 import Swal from 'sweetalert2';
+import ThemeToggle from '../components/ThemeToggle';
 
 const AdminLayout = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -63,6 +64,7 @@ const AdminLayout = () => {
                 <LogOut size={18} />
                 <span className="hidden sm:inline">Logout</span>
               </button>
+              <ThemeToggle />
             </div>
           </div>
 
@@ -100,6 +102,7 @@ const AdminLayout = () => {
               </div>
             </div>
             <div className="flex items-center gap-1">
+              <ThemeToggle />
               <button onClick={handleLogout} className={`p-2 rounded-lg transition-colors ${isDark ? 'text-gray-400 hover:text-red-400 hover:bg-gray-800' : 'text-gray-500 hover:text-red-500 hover:bg-gray-100'}`}>
                 <LogOut size={20} />
               </button>

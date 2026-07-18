@@ -1,7 +1,8 @@
 // Client/src/components/ThemeToggle.jsx
 import React from 'react';
-import { Sun, Moon, Monitor } from 'lucide-react';
+import { Moon, Monitor } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import sunIcon from '../assets/sun-icon.png';
 
 const ThemeToggle = () => {
   const { theme, setTheme, effectiveTheme } = useTheme();
@@ -25,7 +26,7 @@ const ThemeToggle = () => {
       ) : theme === 'dark' ? (
         <Moon size={16} />
       ) : (
-        <Sun size={16} />
+        <img src={sunIcon} alt="Light" className="w-4 h-4" />
       )}
     </button>
   );
